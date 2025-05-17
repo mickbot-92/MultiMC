@@ -8,8 +8,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-      - name: Install dependencies
-        run: |
+      - run: |
           sudo apt-get update
-          sudo apt install build-essential libopenal1 x11-xserver-utils subversion git clang cmake curl zlib1g-dev qtbase5-dev mesa-utils
-          java --version || apt search openjdk-*
+          sudo apt install build-essential libopenal1 x11-xserver-utils subversion cmake qtbase5-dev mesa-utils
+          mkdir install build && cd build
+          cmake -DCMAKE_INSTALL_PREFIX=../install -DLauncher_META_URL:STRING="https://raw.githubusercontent.com/theofficialgman/meta-multimc/master-clean/index.json" ../
+          make -j install
