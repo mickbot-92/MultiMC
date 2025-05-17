@@ -13,4 +13,8 @@ jobs:
           sudo apt install build-essential libopenal1 x11-xserver-utils subversion cmake qtbase5-dev mesa-utils libqt5svg5-dev
           mkdir install build && cd build
           cmake -DCMAKE_INSTALL_PREFIX=../install -DLauncher_META_URL:STRING="https://raw.githubusercontent.com/theofficialgman/meta-multimc/master-clean/index.json" ../
-          make install
+          make -j$(nproc) install
+      - uses: actions/upload-artifact@main
+        with:
+          name: MultiMC ARM64
+          path: /home/runner/work/MultiMC/MultiMC/install/
