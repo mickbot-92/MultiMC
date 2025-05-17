@@ -7,11 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 'd98022d3ae43bf07546d33beb2013c1ede14a4f8'
           submodules: 'recursive'
       - run: |
           sudo apt-get update
-          sudo apt install build-essential libopenal1 x11-xserver-utils subversion cmake qtbase5-dev mesa-utils
+          sudo apt install build-essential libopenal1 x11-xserver-utils subversion cmake qtbase5-dev mesa-utils libqt5svg5-dev
           mkdir install build && cd build
           cmake -DCMAKE_INSTALL_PREFIX=../install -DLauncher_META_URL:STRING="https://raw.githubusercontent.com/theofficialgman/meta-multimc/master-clean/index.json" ../
           make -j install
